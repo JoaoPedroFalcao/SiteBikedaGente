@@ -1,0 +1,37 @@
+.swiper {
+    .swiperslide {
+        background-color: var(--color-background2);
+        padding: 1rem;
+        margin: 5px;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    :global(.swiper-slide-active) .swiperslide {
+        animation: pulse 4s;
+        background-color: rgba(80, 179, 44, 50%);
+
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1.0);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1.0);
+        }
+    }
+
+    h4 {
+        color: var(--color-h3);
+    }
+
+    p {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        color: #f7f7f7c6;
+        font-weight: medium;
+    }
+}

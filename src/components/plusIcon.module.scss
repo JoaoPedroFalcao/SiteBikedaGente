@@ -1,0 +1,26 @@
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 4;
+    background-color: #966d9f;
+    top: 2rem;
+    left: 7rem;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: 1s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+    .plus {
+        max-width: 100%;
+        width: 5vw;
+    }
+
+    .x {
+        display: none;
+        max-width: 100%;
+        width: 5vw;
+    }
+}

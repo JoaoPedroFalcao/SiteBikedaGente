@@ -1,0 +1,280 @@
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    z-index: 1; 
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        background: conic-gradient(
+            from var(--angle), 
+            transparent 0%,      
+            transparent 15%,     
+            #50b32c 30%,         
+            #B4FF4F 45%,        
+            transparent 45%,    
+            
+            transparent 65%,     
+            #50b32c 80%,         
+            #B4FF4F 95%,         
+            transparent 95%   
+        );
+        z-index: -2; 
+        border-radius: 10px; 
+        animation: girar 3s linear infinite;
+        filter: blur(8px);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0; 
+        background: var(--color-background2); 
+        z-index: -1; 
+        border-radius: 8px;
+    }
+
+    img {
+        max-width: 100%;
+        z-index: 2;
+        border-radius: 8px;
+        position: relative;
+    }
+
+    .containerInfo {
+        div {
+            display: none;
+        }
+    }
+
+    span {
+        z-index: 4;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #50b32c;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: 1s;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .icon1 {
+        top: 25%;
+        left: 34%;
+
+        .plus {
+            max-width: 100%;
+            width: 5vw;
+        }
+
+        .x {
+            display: none;
+            max-width: 100%;
+            width: 5vw;
+        }
+    } 
+
+    .icon2 {
+        top: 60%;
+        left:20%;
+
+        .plus {
+            max-width: 100%;
+            width: 5vw;
+        }
+
+        .x {
+            display: none;
+            max-width: 100%;
+            width: 5vw;
+        }
+    }
+    .icon3 {
+        bottom: 30%;
+        right: 15%;
+
+        .plus {
+            max-width: 100%;
+            width: 5vw;
+        }
+
+        .x {
+            display: none;
+            max-width: 100%;
+            width: 5vw;
+        }
+    }
+    .icon4 {
+        bottom: 30%;
+        left: 55%;
+
+        .plus {
+            max-width: 100%;
+            width: 5vw;
+        }
+
+        .x {
+            display: none;
+            max-width: 100%;
+            width: 5vw;
+        }
+    }
+
+
+    span:hover {
+        background-color: #B4FF4F;
+
+        .plus {
+            display: none;
+        }
+        .x {
+            display: block;
+        }
+    }
+}
+
+@keyframes girar {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        img {
+            width: 40vw;
+        }
+        
+        span {
+            width: 2rem;
+            height: 2rem;
+        }
+
+    .containerInfo {
+        .icon1 {
+            left: 40%;
+
+            .plus {
+                width: 2vw;
+            }
+
+            .x {
+                width: 2vw;
+            }
+        } 
+
+        .icon2 {
+            top: 65%;
+            left: 26%;
+
+            .plus {
+                width: 2vw;
+            }
+
+            .x {
+                width: 2vw;
+            }
+        }
+    
+        .icon3 {
+            right: 20%;
+
+            .plus {
+                width: 2vw;
+            }
+
+            .x {
+                width: 2vw;
+            }
+        }
+
+
+        .icon4 {
+            left: 53%;
+
+            .plus {
+                width: 2vw;
+            }
+
+            .x {
+                width: 2vw;
+            }
+        }
+
+         div {
+            position: absolute;
+            background-color: var(--color-background2);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            width: 30%;
+            padding: 1rem;
+            z-index: 5;
+        }
+    }
+
+    .containerInfo:hover {
+
+        h4 {
+            color: var(--color-h2);
+        }
+
+        p {
+            color: #f7f7f7c6;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .bikeInfo1 {
+            display: block;
+            top: -25%;
+            left: 23%;
+        }
+        .bikeInfo2 {
+            display: block;
+            top: 30%;
+            left: 10%;
+        }
+        .bikeInfo3 {
+            display: block;
+            bottom: 50%;
+            right: 13%;
+        }
+        .bikeInfo4 {
+            display: block;
+            bottom: 50%;
+            right: 30%;
+        }
+    }
+
+    
+    
+
+    
+
+
+    span:hover {
+        background-color: #EA284B;
+
+        .plus {
+            display: none;
+        }
+        .x {
+            display: block;
+        }
+    }
+    
+    }
+}

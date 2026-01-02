@@ -1,0 +1,131 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    position: fixed;
+    z-index: 9000;
+    background-color: var(--color-background1);
+    width: 100%;
+    top: 0;
+
+    .logo {
+        max-width: 100%;
+        width: 20vw;
+        margin-left: 1rem;
+    }
+}
+
+
+.hamburguerIcon {
+    display: block; 
+    cursor: pointer;
+}
+
+.navMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    margin-top: 6rem;
+    padding: 2rem;
+    display: flex; 
+    flex-direction: column;
+    background-color: #ffff;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+
+    li {
+        list-style: none;
+        margin: 1rem 0;
+        padding: 0.5rem;
+        border-bottom: solid #50b32c 1px;
+    }
+    
+    a, .appButton {
+        text-decoration: none;
+        color: #50b32c;
+        font-size: 1.2rem;
+    }
+    a:hover {
+        font-weight: 700;
+    }
+}
+
+.navMenu.open { 
+    transform: translateX(0);
+}
+
+
+
+@media (min-width: 768px) {
+  
+.header {
+    display: flex;
+    padding: 1rem 2rem;
+
+    .logo {
+        width: 10vw;
+    }
+
+    .hamburguerIcon {
+        display: none; 
+    }
+
+    .navMenu {
+        transform: none;
+        background-color: transparent;
+        flex-direction: row;
+        gap: 1rem;
+        position: static;
+        margin-top: 0;
+        padding: 1rem;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+
+
+        li {
+            border: none;
+            margin: 0;
+            font-weight: bold;
+            padding: 0.7rem 1rem;
+            transition: 0.5s;
+        }
+        li:hover {
+            transform: scale(1.05);  
+        }
+
+        .appButton {
+            background-color: #50b32c;
+            border-radius: 8px;
+            padding: 0.7rem 2.5rem;
+            color: #f7f7f7;
+            cursor: pointer;
+           
+
+            &:hover {
+                background-color: var(--color-button-hover);
+                border: none;
+                font-weight: bold;
+            }
+        }
+
+        a, .appButton {
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        a:hover{
+            font-weight: 500;
+            transform: scale(1.10);
+            border-bottom: solid #422343 1px;
+
+        }
+    }
+}
+
+}

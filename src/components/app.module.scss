@@ -1,0 +1,67 @@
+.containerApp {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 1rem;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    justify-content: center;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-button);
+    padding: 1rem;
+    border-radius: 50%;
+    transition-duration: 0.5s; 
+    transition-property: background-color, transform;
+  }
+  button:hover {
+    background-color: var(--color-button-hover);
+    transform: scale(1.1); 
+  }
+  
+}
+
+@media (min-width: 768px) {
+  .containerApp {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0;
+
+    img {
+      width: 20vw;
+      justify-self: center;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-around;
+    }
+
+    li {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    button {
+      padding: 1.3rem;
+    }
+    p {
+      font-size: 1.2rem;
+      font-weight: bold;
+    } 
+  }
+}
