@@ -24,8 +24,11 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon as any;
 
 const stations = [
-    { id: 1, nome: "Estação Orindi", lat: -22.543380, lng: -42.894094 },
-    { id: 2, nome: "Estação Paraíso", lat: -22.500312, lng: -42.903147 },
+    { id: 1, nome: "Estação Orindi", situacao: "Disponível", lat: -22.543380, lng: -42.894094 },
+    { id: 2, nome: "Estação Paraíso", situacao: "Disponível", lat: -22.500312, lng: -42.903147 },
+    { id: 3, nome: "Estação KM 2.5", situacao: "Indisponível", lat: -22.523, lng: -42.9803 },
+    { id: 4, nome: "Estação Parada Modelo", situacao: "Indisponível", lat: -22.5459, lng: -42.985 },
+
 ];
 
 type MapControlProps = {
@@ -46,7 +49,7 @@ const MapStation = () => {
     
     return (
     <div className={styles.container}>
-      <p>Estação selecionada: <span><strong>{activeStation.nome}</strong></span></p>
+      <p>Situação da Estação Selecionada: <span><strong>{activeStation.situacao}</strong></span></p>
 
 
       <MapContainer 
@@ -70,7 +73,7 @@ const MapStation = () => {
           <button
             key={station.id}
             onClick={() => setActiveStation(station)}
-            className={styles.button}
+            className={station.id > 2 ? styles.buttonGray : styles.button}
           >
             {station.nome}
           </button>

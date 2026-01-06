@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Base from '../assets/Mapa.png'
 import QR from '../assets/QRCode.png'
 import Historico from '../assets/Historico.png'
-import Estacao from '../assets/Estacao.png'
+import Estacao from '../assets/Estação.png'
 import styles from './app.module.scss'
 
 const App = () => { 

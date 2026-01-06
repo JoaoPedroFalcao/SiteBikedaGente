@@ -34,6 +34,17 @@
             font-weight: bold;
             transition: 0.5s;
         }
+        .buttonGray {
+            margin-top: 1.5rem;
+            padding: 0.8rem;
+            border: none;
+            font-size: 1rem;
+            color: var(--color-paragrafo);
+            background-color: gray;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.5s;
+        }
         .button:hover {
             cursor: pointer;
             background-color: var(--color-button-hover);
@@ -74,7 +85,12 @@
                 border: none;
                 font-size: 1rem;
                 margin: 0;
-
+            }
+            .buttonGray {
+                padding: 1rem 5rem;
+                border: none;
+                font-size: 1rem;
+                margin: 0;
             }
             .button:hover {
                 cursor: pointer;
