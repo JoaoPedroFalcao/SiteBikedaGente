@@ -1,0 +1,29 @@
+// supabase/deno.jsonc
+
+{
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable", "esnext"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "lint": {
+    "files": {
+      "include": ["functions/"]
+    },
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": ["no-explicit-any"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["functions/"]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 120,
+      "indentWidth": 2,
+      "singleQuote": true
+    }
+  }
+}

@@ -30,8 +30,13 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
-.env*.local
+# Variáveis de Ambiente 
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.env
 
 # typescript
 *.tsbuildinfo
