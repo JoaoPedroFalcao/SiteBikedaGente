@@ -2,12 +2,75 @@ import React, { createContext, useState, useEffect, useContext, PropsWithChildre
 import { Session, User, RealtimeChannel } from '@supabase/supabase-js';
 import { supabase } from '@/api/supabase';
 import { navigate } from '@/navigation/navigation';
-import { AppState } from 'react-native';
+import { AppState, Platform, Alert } from 'react-native';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 import { showErrorToast } from '@/utils/errorHandler';
 
+// --- NOVOS IMPORTS PARA NOTIFICAÇÃO ---
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
+
 WebBrowser.maybeCompleteAuthSession();
+
+// --- CONFIGURAÇÃO CORRIGIDA ---
+// Adicionamos shouldShowBanner e shouldShowList para satisfazer o TypeScript
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    shouldShowBanner: true, // Novo: Exibe o banner no topo da tela
+    shouldShowList: true,   // Novo: Exibe na central de notificações
+  }),
+});
+
+// --- FUNÇÃO AUXILIAR: Pede permissão e gera o Token ---
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    
+    if (finalStatus !== 'granted') {
+      console.log('[AuthContext] Permissão de notificação negada!');
+      return;
+    }
+
+    try {
+        // ID do projeto fixo conforme sua conta EAS
+        const projectId = '8da2d9f7-aa8f-46ba-93a2-9da0c45513a6';
+        
+        token = (await Notifications.getExpoPushTokenAsync({
+            projectId: projectId,
+        })).data;
+        
+        console.log("🔔 [AuthContext] Push Token Gerado com Sucesso:", token);
+    } catch (e) {
+        console.error("❌ [AuthContext] Erro ao gerar token Expo:", e);
+    }
+  } else {
+    console.log('[AuthContext] Notificações não funcionam em simulador físico.');
+  }
+
+  return token;
+}
 
 type ProfileStatus = 'pending_approval' | 'approved' | 'rejected' | 'deleted' | null;
 
@@ -50,6 +113,33 @@ export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
   const fetchProfileRef = useRef<() => Promise<void>>(null);
   const loginTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const processedUrlRef = useRef<string>(""); 
+
+  // --- LÓGICA DE REGISTRO DO TOKEN NO SUPABASE ---
+  const registerToken = async (userId: string) => {
+    try {
+        const token = await registerForPushNotificationsAsync();
+        if (token) {
+          Alert.alert("Debug Token", `Token gerado: ${token}`);
+            // Salva no banco de dados
+            const { error } = await supabase
+                .from('profiles')
+                .update({ push_token: token })
+                .eq('id', userId);
+            
+            if (error) Alert.alert("Erro Banco", error.message);
+            else Alert.alert("Debug", "Token veio nulo/vazio");
+        }
+    } catch (error) {
+        console.error("[AuthContext] Erro fatal no registro de notificação:", error);
+    }
+  };
+
+  // --- EFEITO: REGISTRAR AO LOGAR ---
+  useEffect(() => {
+    if (user) {
+        registerToken(user.id);
+    }
+  }, [user]);
 
   const extractParamsFromUrl = (url: string) => {
     const params: { [key: string]: string } = {};

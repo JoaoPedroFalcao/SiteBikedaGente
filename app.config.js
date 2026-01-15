@@ -9,7 +9,7 @@ module.exports = ({ config }) => {
     name: "Bike da Gente",
     slug: "bike-da-gente",
     scheme: "bikedagente",
-    version: "2.6.1",
+    version: "2.6.2",
     orientation: "portrait",
     icon: "./assets/images/AppLogo_novo.png",
     userInterfaceStyle: "light",
@@ -40,12 +40,13 @@ module.exports = ({ config }) => {
       }
     },
     android: {
-      versionCode: 15,
+      versionCode: 16,
       adaptiveIcon: {
         foregroundImage: "./assets/images/AppLogo_novo.png",
         backgroundColor: "#3a6049"
       },
       package: "com.unobike.bikedagenteguapi",
+      "googleServicesFile": "./google-services.json",
       permissions: [
         "android.permission.INTERNET",
         "android.permission.CAMERA",

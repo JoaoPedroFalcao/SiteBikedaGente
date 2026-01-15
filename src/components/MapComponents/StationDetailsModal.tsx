@@ -8,6 +8,7 @@ import Colors from '@/constants/Colors';
 import { RootStackScreenProps } from '@/navigation/types';
 import { MaterialIcons } from '@expo/vector-icons';
 
+// Assegure-se de que sua tipagem em navigation/types.tsx inclui StationBikes
 type NavigationProps = RootStackScreenProps<'App'>['navigation'];
 
 interface StationWithStatus extends Station {
@@ -19,7 +20,7 @@ interface StationDetailsModalProps {
   station: StationWithStatus | null;
   isVisible: boolean;
   onClose: () => void;
-  onRent: () => void;
+  onRent: () => void; // Mantemos a prop para não quebrar o pai, mas não a usaremos mais aqui
   isRenting: boolean;
   isParentLoading: boolean;
 }
@@ -29,10 +30,8 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
   const { userRole } = useAuth();
   const navigation = useNavigation<NavigationProps>();
   
-  // Estado para saber se é "horário comercial" (05h - 23h)
   const [isBusinessHours, setIsBusinessHours] = useState(true);
 
-  // Função auxiliar para pegar a hora de Brasília (UTC-3)
   const getBrasiliaHour = () => {
     const now = new Date();
     let hour = now.getUTCHours() - 3;
@@ -43,7 +42,6 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
   useEffect(() => {
     if (isVisible) {
       const hour = getBrasiliaHour();
-      // Aberto se for >= 5 E < 23
       const isOpen = hour >= 5 && hour < 23;
       setIsBusinessHours(isOpen);
     }
@@ -54,6 +52,14 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
   const handleManageStation = () => {
     onClose();
     navigation.navigate('AdminStationDetail', { station });
+  };
+
+  // --- NOVA FUNÇÃO: Navega para a lista de bikes ---
+  const handleBikeSelection = () => {
+    onClose(); // Fecha o modal do mapa
+    // Navega para a nova tela passando a estação
+    // @ts-ignore - Ignorando erro se o TS ainda não indexou o tipo novo
+    navigation.navigate('StationBikes', { station });
   };
 
   const handleNavigate = () => {
@@ -67,13 +73,13 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
     Linking.openURL(url!);
   };
   
-  // --- LÓGICA DOS 3 ESTADOS ---
-  const mode = station.operation_mode || 'auto'; // Fallback para auto se nulo
+  const mode = station.operation_mode || 'auto';
   let isStationOpen = false;
   let statusText = '';
   let statusColor = Colors.textSecondary;
   let buttonText = 'Retirar Bicicleta';
-  let buttonIcon: keyof typeof MaterialIcons.glyphMap = 'qr-code-scanner';
+  // MUDANÇA: Ícone padrão alterado de 'qr-code-scanner' para 'directions-bike'
+  let buttonIcon: keyof typeof MaterialIcons.glyphMap = 'directions-bike'; 
 
   switch (mode) {
     case 'offline':
@@ -91,7 +97,6 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
       break;
 
     case 'auto':
-      // No modo auto, depende do horário
       if (isBusinessHours) {
         isStationOpen = true;
         statusText = 'Horário de funcionamento 05h as 23h - Aberto';
@@ -99,7 +104,7 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
       } else {
         isStationOpen = false;
         statusText = 'Horário de funcionamento 05h as 23h - Fechado';
-        statusColor = Colors.accent; // Amarelo/Laranja para alerta de horário
+        statusColor = Colors.accent;
         buttonText = 'Estação Fechada';
         buttonIcon = 'access-time';
       }
@@ -108,7 +113,6 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
 
   const noBikesAvailable = station.available_bikes === 0;
   
-  // Se estiver aberta, verifica se tem bike. Se fechada, já bloqueia.
   if (isStationOpen && noBikesAvailable) {
       buttonText = 'Nenhuma bike disponível';
       buttonIcon = 'error-outline';
@@ -118,7 +122,7 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
     noBikesAvailable || 
     isRenting || 
     isParentLoading || 
-    !isStationOpen; // Bloqueio principal baseado no status calculado
+    !isStationOpen;
 
   return (
     <Modal
@@ -133,7 +137,6 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
             <Text style={styles.modalTitle}>{station.id} - {station.name}</Text>
           </View>
           
-          {/* Exibição do Status Dinâmico */}
           <View style={styles.statusContainer}>
             <View style={[styles.statusIndicator, { backgroundColor: statusColor }]} />
             <Text style={styles.statusText}>{statusText}</Text>
@@ -155,7 +158,7 @@ const StationDetailsModal = ({ station, isVisible, onClose, onRent, isRenting, i
 
           <TouchableOpacity 
             style={[styles.rentButton, isDisabled && styles.disabledButton]} 
-            onPress={onRent}
+            onPress={handleBikeSelection} // MUDANÇA: Agora chama a função nova
             disabled={isDisabled}
           >
             {isRenting ? <ActivityIndicator color={Colors.surface} /> : (

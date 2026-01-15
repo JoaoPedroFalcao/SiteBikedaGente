@@ -61,15 +61,15 @@ export default function App() {
   }
 
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <AuthProvider>
-        <RideProvider>
-          <MqttProvider>
+        <MqttProvider>
+          <RideProvider>
             <RootNavigator />
             <ForceUpdateModal />
             <SuspendedAccountModal />
-          </MqttProvider>
-        </RideProvider>
+          </RideProvider>
+        </MqttProvider>
       </AuthProvider>
       <Toast config={toastConfig} />
     </View>

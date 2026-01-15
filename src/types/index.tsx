@@ -5,6 +5,8 @@ export interface Bike {
   last_station_id: number | null; 
   current_dock_id: number | null; 
   last_activity?: string;
+  rfid_uid?: string;
+  current_lock_position: number | null;
   battery_level?: number;
 }
 

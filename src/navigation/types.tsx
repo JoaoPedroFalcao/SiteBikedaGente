@@ -31,6 +31,7 @@ export type RootStackParamList = {
   AdminBikesDashboard: undefined;
   AuthRedirect: undefined;
   Loading: undefined;
+  StationBikes: { station: Station };
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<RootStackParamList, T>;
