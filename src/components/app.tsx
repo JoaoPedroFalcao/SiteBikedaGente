@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Base from '../assets/Mapa.png'
-import QR from '../assets/QRCode.png'
+import Trava from '../assets/Trava.png'
 import Historico from '../assets/Historico.png'
-import Estacao from '../assets/Estação.png'
+import Estacao from '../assets/Estacao.png'
 import styles from './app.module.scss'
 
 const App = () => { 
@@ -17,8 +17,8 @@ const App = () => {
                     <p>Mapa</p>
                 </li>
                 <li>
-                    <button onClick={() => setScreen(QR)}></button>
-                    <p>QR Code</p>
+                    <button onClick={() => setScreen(Trava)}></button>
+                    <p>Desbloqueio Inteligente</p>
                 </li>
                 <li>
                     <button onClick={() => setScreen(Historico)}></button>

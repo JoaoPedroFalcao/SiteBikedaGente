@@ -26,8 +26,8 @@ L.Marker.prototype.options.icon = DefaultIcon as any;
 const stations = [
     { id: 1, nome: "Estação Orindi", situacao: "Disponível", lat: -22.543380, lng: -42.894094 },
     { id: 2, nome: "Estação Paraíso", situacao: "Disponível", lat: -22.500312, lng: -42.903147 },
-    { id: 3, nome: "Estação KM 2.5", situacao: "Indisponível", lat: -22.523, lng: -42.9803 },
-    { id: 4, nome: "Estação Parada Modelo", situacao: "Indisponível", lat: -22.5459, lng: -42.985 },
+    { id: 3, nome: "Estação Praça do KM 3", situacao: "Disponível", lat: -22.554298, lng: -42.961517 },
+    { id: 4, nome: "Estação Praça do Sapê ", situacao: "Disponível", lat: -22.551828, lng: -42.980415 },
 
 ];
 
@@ -73,7 +73,7 @@ const MapStation = () => {
           <button
             key={station.id}
             onClick={() => setActiveStation(station)}
-            className={station.id > 2 ? styles.buttonGray : styles.button}
+            className={station.id > 6 ? styles.buttonGray : styles.button}
           >
             {station.nome}
           </button>

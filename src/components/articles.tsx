@@ -127,8 +127,8 @@ const Article = ( {activeArticle}:props) => {
                 <p>
                     Nossa equipe está pronta para te ajudar. Entre em contato conosco pelo:
                     <ul>
-                        <li>WhatsApp: [(XX) XXXXX-XXXX]</li>
-                        <li>E-mail: [contato@email.com.br]</li>
+                        <li>WhatsApp: (21) 97359-4295</li>
+                        <li>E-mail: unobike1@gmail.com</li>
                     </ul>
                 </p>
             </Reveal>

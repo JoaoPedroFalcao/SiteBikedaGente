@@ -19,8 +19,8 @@ const Home = () => {
           <Reveal>
             <h1>Pedalar não tem preço.<span>Vá de Unobike.</span></h1>
             <p>
-              Acreditamos que a mobilidade urbana é um direito, não um luxo. Por isso, a Unobike quebra barreiras: 
-              oferecemos a mesma tecnologia, segurança e praticidade dos grandes apps, mas sem mensalidades ou taxas de desbloqueio. 
+              Acreditamos que a mobilidade urbana é um direito, não um luxo. Por isso, a Bike da Gente quebra barreiras: 
+              oferecemos tecnologia, segurança e praticidade, porem sem as mensalidades ou taxas de desbloqueio. 
               É só baixar, encontrar a estação mais próxima e redescobrir sua cidade com total liberdade.
             </p>
           </Reveal>

@@ -17,9 +17,9 @@
 
     .buttonContainer {
         margin-bottom: 20px; 
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        flex-wrap: wrap;
         justify-content: center;
     
 
@@ -73,10 +73,12 @@
         }
 
         .buttonContainer {
-            display: flex;
+            display: grid;
             gap: 4rem;
-            flex-wrap: wrap;
+            grid-template-columns: 1fr 1fr;
+            width: fit-content;
             justify-content: center;
+            justify-self: center;
             margin-top: 1rem;
         
 
