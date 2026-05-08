@@ -28,10 +28,10 @@ const stations = [
     { id: 2, nome: "Estação Paraíso", situacao: "Disponível", lat: -22.500312, lng: -42.903147 },
     { id: 3, nome: "Estação Praça do KM 3", situacao: "Disponível", lat: -22.554298, lng: -42.961517 },
     { id: 4, nome: "Estação Praça do Sapê ", situacao: "Disponível", lat: -22.551828, lng: -42.980415 },
-    { id: 5, nome: "Vila Olimpia", situacao: "Em breve", lat: -22.666721, lng: -43.021210 },
-    { id: 6, nome: "Cidadania", situacao: "Em breve", lat: -22.650612, lng: -43.020870 },
-    { id: 7, nome: "Vale das pedrinhas", situacao: "Em breve", lat: -22.650629, lng: -42.991371 },
-    { id: 8, nome: "Praça de Várzea alegre", situacao: "Em breve", lat: -22.670353, lng: -43.027008  },
+    { id: 5, nome: "Estação Praça Vila Olimpia", situacao: "Em breve", lat: -22.666721, lng: -43.021210 },
+    { id: 6, nome: "Estação Praça Cidadania", situacao: "Em breve", lat: -22.650612, lng: -43.020870 },
+    { id: 7, nome: "Estação Praça Vale das pedrinhas", situacao: "Em breve", lat: -22.650629, lng: -42.991371 },
+    { id: 8, nome: "Estação Parada Modelo", situacao: "Em breve", lat: -22.670353, lng: -43.027008  },
 
 ];
 
