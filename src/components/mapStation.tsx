@@ -77,7 +77,7 @@ const MapStation = () => {
           <button
             key={station.id}
             onClick={() => setActiveStation(station)}
-            className={station.id > 4 ? styles.buttonGray : styles.button}
+            className={station.id > 6 ? styles.buttonGray : styles.button}
           >
             {station.nome}
           </button>
