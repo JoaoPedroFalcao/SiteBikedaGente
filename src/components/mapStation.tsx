@@ -30,7 +30,7 @@ const stations = [
     { id: 4, nome: "Estação Praça do Sapê ", situacao: "Disponível", lat: -22.551828, lng: -42.980415 },
     { id: 5, nome: "Estação Praça Vila Olimpia", situacao: "Disponível", lat: -22.666721, lng: -43.021210 },
     { id: 6, nome: "Estação Praça Cidadania", situacao: "Disponível", lat: -22.650612, lng: -43.020870 },
-    { id: 7, nome: "Estação Praça Vale das pedrinhas", situacao: "Em breve", lat: -22.650629, lng: -42.991371 },
+    { id: 7, nome: "Estação Praça Vale das pedrinhas", situacao: "Disponível", lat: -22.650629, lng: -42.991371 },
     { id: 8, nome: "Estação Parada Modelo", situacao: "Em breve", lat: -22.670353, lng: -43.027008  },
 
 ];
@@ -77,7 +77,7 @@ const MapStation = () => {
           <button
             key={station.id}
             onClick={() => setActiveStation(station)}
-            className={station.id > 6 ? styles.buttonGray : styles.button}
+            className={station.id > 7 ? styles.buttonGray : styles.button}
           >
             {station.nome}
           </button>
