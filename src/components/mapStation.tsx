@@ -31,7 +31,7 @@ const stations = [
     { id: 5, nome: "Estação Praça Vila Olimpia", situacao: "Disponível", lat: -22.666721, lng: -43.021210 },
     { id: 6, nome: "Estação Praça Cidadania", situacao: "Disponível", lat: -22.650612, lng: -43.020870 },
     { id: 7, nome: "Estação Praça Vale das pedrinhas", situacao: "Disponível", lat: -22.650629, lng: -42.991371 },
-    { id: 8, nome: "Estação Parada Modelo", situacao: "Disponível", lat: -22,5472, lng: -42,986  },
+    { id: 8, nome: "Estação Parada Modelo", situacao: "Disponível", lat: -22,5472, lng: -42,9862  },
 
 ];
 
